@@ -5,14 +5,17 @@ A travel planner/assistant powered by [google-adk framework](https://github.com/
 ## Requirements
 
 ```bash
+conda create -n travel_assistant python=3.10 -y
+conda activate travel_assistant
+
 git clone https://github.com/LotsoTeddy/travel-planner.git
 
 cd travel-planner
 
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
-Then, you should add your ARK API KEY to `/src/agents/model.py`
+Then, you should add your ARK API KEY to `/src/agents/model.py`.
 
 ## Start
 
@@ -38,7 +41,7 @@ uvicorn agents.activities_agent.__main__:app --port 8003 &
 streamlit run travel_ui.py
 ```
 
-Visit `http://localhost:8501/` in your browser
+Visit [http://localhost:8501/](http://localhost:8501/) in your browser
 
 ## Optimization
 
@@ -53,6 +56,8 @@ Visit `http://localhost:8501/` in your browser
     - edit `/src/agents/*_agent`
 
 ## Result
+
+The agent will run for about 3 to 5 minutes.
 
 ![travel assistant demo](assets/images/screenshot.png)
 

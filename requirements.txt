@@ -6,3 +6,5 @@ httpx
 pydantic
 openai
 streamlit
+pyyaml
+elasticsearch==8.14

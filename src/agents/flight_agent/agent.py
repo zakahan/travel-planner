@@ -7,31 +7,42 @@ from google.adk.sessions import InMemorySessionService
 from google.genai import types
 
 from ..model import create_reasoning_model
+from tools.tools_impl import get_flight_tools_async
+from tp_logger import get_logger
+logger = get_logger(__name__)
 
-activities_agent = Agent(
-    name="flight_agent",
-    model=create_reasoning_model(),
-    description="Suggests reasonable flight suggestion for the user from source location to destination.",
-    instruction=(
-        "Given reasonable flight suggestions for the user from source location to destination."
-        "Provide the flight name, departure and arrival time, price estimate, and duration in hours. "
-        "Respond in plain English. Keep it concise and well-formatted."
-    ),
-)
-session_service = InMemorySessionService()
-runner = Runner(
-    agent=activities_agent, app_name="flight_app", session_service=session_service
-)
+async def get_activities_agent_async():
+    tools, exit_stack = await get_flight_tools_async()
+    activities_agent = Agent(
+        name="flight_agent",
+        model=create_reasoning_model(),
+        description="Suggests reasonable flight suggestion for the user from source location to destination.",
+        instruction=(
+            "Given reasonable flight suggestions for the user from source location to destination."
+            "Provide the flight name, departure and arrival time, price estimate, and duration in hours. "
+            "Respond in plain English. Keep it concise and well-formatted."
+        ),
+        tools=tools
+    )
+
+    return activities_agent, exit_stack
+
 USER_ID = "user_flight"
 SESSION_ID = "session_flight"
 
 
 async def execute(request):
+    activities_agent, exit_stack = await get_activities_agent_async()
+    session_service = InMemorySessionService()
     session_service.create_session(
         app_name="flight_app", user_id=USER_ID, session_id=SESSION_ID
     )
-    prompt = "Provide some possible flights for the user from source location to destination. The source location is {src} and the destination is {dest}.".format(
-        src=request["origin"], dest=request["destination"]
+    runner = Runner(
+        agent=activities_agent, app_name="flight_app", session_service=session_service
+    )
+    prompt = "Please use the tool to help the user search for the most suitable flights and provide suggestions. " \
+    "The user's departure location is {src}, the destination is {dest}, and the departure date is {start_date}.".format(
+        src=request["origin"], dest=request["destination"], start_date=request["start_date"]
     )
     message = types.Content(role="user", parts=[types.Part(text=prompt)])
     async for event in runner.run_async(
@@ -50,5 +61,6 @@ async def execute(request):
             #     print("JSON parsing failed:", e)
             #     print("Response content:", response_text)
             #     return {"activities": response_text}  # fallback to raw text
-            print(response_text)
+            logger.debug(f"Flight Agent:\n{response_text}")
+            await exit_stack.aclose()
             return response_text

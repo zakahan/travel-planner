@@ -1,0 +1,22 @@
+ark:
+  embedding:
+    model: doubao-embedding-text-240515
+    api_base: https://ark.cn-beijing.volces.com/api/v3/embeddings
+    api_key: your_api_key
+    
+elastic:
+  ELASTICSEARCH_HOST: https://localhost
+  ELASTICSEARCH_PORT: 9200
+  ELASTICSEARCH_USERNAME: elastic
+  ELASTICSEARCH_PASSWORD: your_password
+
+vectorbase:
+  VECTOR_TYPE: elasticsearch
+  ATTRACTION_FILE_PATH: your/path/of/attractions.tsv
+  ATTRACTION_COLLECTION_NAME: attraction01
+
+
+mcp:
+  flight_mcp:
+    api_key: your_api_key
+    

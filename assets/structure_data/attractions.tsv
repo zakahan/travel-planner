@@ -1,0 +1,31 @@
+City	Attraction_Name	Type	Brief_Introduction	Requires_Reservation	Popularity_Level
+Beijing	Forbidden City	Historical Site	A vast imperial palace complex with over 70 palaces and 9,000 rooms, serving as the imperial home for 24 emperors.	Yes	High
+Beijing	Great Wall of China (Badaling Section)	Historical Landmark	One of the most iconic sections of the ancient wall, offering stunning views and well-preserved architecture.	No	High
+Beijing	Temple of Heaven	Religious Site	An imperial sacrificial altar with elaborate architecture, symbolizing the relationship between heaven and earth.	No	Moderate
+Beijing	Summer Palace	Imperial Garden	A beautiful park-like complex featuring a lake, gardens, and palaces, once the summer retreat of emperors.	No	Moderate
+Beijing	Lama Temple	Religious Temple	A prominent Tibetan Buddhist monastery with rich cultural and religious artifacts.	No	Moderate
+Beijing	Tiananmen Square	Historical Square	A large public square with significant historical importance, surrounded by iconic landmarks.	No	High
+Beijing	Hutongs	Traditional Neighbourhood	Ancient alleyways showcasing traditional Beijing courtyard houses and local culture.	No	Moderate
+Beijing	National Stadium (Bird's Nest)	Modern Stadium	A futuristic stadium built for the 2008 Olympics, now hosting major events and concerts.	No	Moderate
+Beijing	798 Art Zone	Art District	An arts and culture hub in a converted industrial area, featuring galleries, studios, and creative spaces.	No	Low
+Beijing	Yonghe Temple	Religious Site	A Tibetan Buddhist temple with impressive architecture and intricate Buddhist statues.	No	Moderate
+Paris	Eiffel Tower	Landmark	An iconic iron lattice tower offering panoramic views of Paris, a symbol of the city and engineering marvel.	Yes	High
+Paris	Louvre Museum	Art Museum	The world's largest art museum, home to the Mona Lisa and Venus de Milo, housed in a historic palace.	Yes	High
+Paris	Notre-Dame Cathedral	Religious Monument	A famous medieval Catholic cathedral known for its Gothic architecture and historical significance.	No (Limited access post-fire)	High
+Paris	Musée d'Orsay	Art Museum	Housed in a former railway station, featuring extensive collections of Impressionist art by Monet, Renoir, etc.	Yes	Moderate
+Paris	Versailles Palace	Historical Palace	A lavish royal palace with the Hall of Mirrors and extensive gardens, once the residence of French kings.	Yes	High
+Paris	Montmartre	Artistic District	A bohemian neighborhood on a hill, home to Sacré-Cœur Basilica and vibrant art scene.	No	High
+Paris	Seine River Cruise	Scenic Tour	A popular cruise along the Seine River, offering views of Paris' iconic landmarks from the water.	Yes	Moderate
+Paris	Orangerie Museum	Art Museum	Features Claude Monet's Water Lilies murals and other early 20th-century art in a serene setting.	No	Low
+Paris	Luxembourg Gardens	Public Garden	A beautiful park with manicured lawns, ponds, and the Medici Fountain, ideal for relaxation.	No	Moderate
+Paris	Panthéon	Historical Monument	A neoclassical mausoleum honoring great French citizens, with stunning architecture and history.	No	Moderate
+New York	Statue of Liberty	Landmark	A symbol of freedom and democracy, a colossal statue gifted by France, located on Liberty Island.	Ferry Ticket Required	High
+New York	Central Park	Urban Park	A massive urban park with lakes, trails, and cultural attractions, offering a green oasis in Manhattan.	No	High
+New York	Metropolitan Museum of Art (The Met)	Art Museum	One of the world's largest art museums, featuring diverse collections from ancient to modern art.	Timed Entry Ticket	High
+New York	Times Square	Commercial District	A bustling hub of entertainment, neon lights, and Broadway theaters, known as "The Crossroads of the World".	No	High
+New York	Empire State Building	Observation Deck	An iconic skyscraper with observation decks offering 360-degree views of New York City.	Timed Entry Ticket	High
+New York	Brooklyn Bridge	Historical Bridge	A historic suspension bridge connecting Manhattan and Brooklyn, popular for walking and biking.	No	Moderate
+New York	Natural History Museum	Museum	Features extensive exhibits on natural history, including dinosaurs, astronomy, and cultural displays.	Timed Entry Ticket	Moderate
+New York	High Line	Urban Park	An elevated linear park built on a former railway track, showcasing modern urban green space design.	No	Moderate
+New York	Statue of Liberty Museum	Interactive Museum	An interactive museum detailing the history and significance of the Statue of Liberty.	No	Low
+New York	Grand Central Terminal	Transportation Hub	A historic railway station with stunning architecture, serving as a major transportation and cultural landmark.	No	High

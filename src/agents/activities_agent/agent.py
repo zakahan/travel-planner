@@ -8,6 +8,9 @@ from google.genai import types
 
 from ..model import create_reasoning_model
 
+from tools.tools_impl import get_attractions
+
+
 activities_agent = Agent(
     name="activities_agent",
     model=create_reasoning_model(),
@@ -17,6 +20,7 @@ activities_agent = Agent(
         "For each activity, provide a name, a short description, price estimate, and duration in hours. "
         "Respond in plain English. Keep it concise and well-formatted."
     ),
+    tools = [get_attractions]
 )
 session_service = InMemorySessionService()
 runner = Runner(

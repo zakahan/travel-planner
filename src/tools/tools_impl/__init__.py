@@ -1,2 +1,5 @@
-from .attraction_tools import get_attractions
-from .flight_searching_tools import get_flight_tools_async
+from .attraction_tools import get_attraction_tools_async
+from .flight_tools import get_flight_tools_async
+from .weather_tool import get_weather_tools_async
+from .attraction_tools import get_attraction_tools_async
+from .hotel_tools import get_hotel_tools_async

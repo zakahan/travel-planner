@@ -176,5 +176,7 @@ cython_debug/
 
 # test
 src/tools/test
-src/tools/tools_config.yaml
+src/configs/tools_config.yaml
 src/logs
+src/mcp_servers/logs
+src/tools/tools_impl/hitl_tools.py

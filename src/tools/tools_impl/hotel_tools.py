@@ -1,3 +1,4 @@
+import os
 import asyncio
 from google.adk.agents import Agent
 from google.adk.artifacts.in_memory_artifact_service import InMemoryArtifactService # Optional
@@ -5,47 +6,51 @@ from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset, SseServerParams, S
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 from google.genai import types
-from tools.config import tools_cfg
-from tp_logger import get_logger
+from configs.config import tools_cfg
+from mcp_servers import MCP_SERVERS_DIR
+from configs import get_logger
 logger = get_logger(__name__)
 
 
-async def get_flight_tools_async():
-    """Gets tools form variflight MCP Server."""
-    logger.debug("Attempting to connection to variflight-mcp server....")
-    # 
+hotel_tools_path = os.path.join(MCP_SERVERS_DIR, "hotel_server_sml.py")
+
+
+
+async def get_hotel_tools_async():
+    """Gets tools from open hotel MCP Server."""
+    logger.debug("Attempting to connection to hotel -mcp server....")
+
     tools, exist_stack = await MCPToolset.from_server(
         connection_params=StdioServerParameters(
-            command="npx",
-            args=["-y",
-                "@variflight-ai/variflight-mcp"
-            ],
-            env={
-                "VARIFLIGHT_API_KEY" : tools_cfg["mcp"]["flight_mcp"]["api_key"]
-            }
+            command="python",
+            args=[
+                hotel_tools_path
+            ]
         )
     )
-    logger.debug("MCP Toolset created successfully.")
+    logger.debug("Hotel MCP Toolset created successfully.")
+    
     return tools, exist_stack
+
+
 
 
 if __name__ == "__main__":
     from agents.model import create_reasoning_model
     
     async def get_agent_async():
-        tools, exit_stack = await get_flight_tools_async()
-        flight_agent = Agent(
-            name="flight_agent",
+        tools, exit_stack = await get_hotel_tools_async()
+        root_agent = Agent(
+            name="hotel_agent",
             model=create_reasoning_model(),
-            description="get flight transfer information by using your tools.",
+            description="get hotel information by using your tools.",
             instruction=(
-            "Given reasonable flight suggestions for the user from source location to destination."
-            "Provide the flight name, departure and arrival time, price estimate, and duration in hours. "
-            "Respond in plain English. Keep it concise and well-formatted."
+            "The user will input location information and time, "
+            "please use the tool to check the local hotel."
             ),
             tools=tools
         )
-        return flight_agent, exit_stack
+        return root_agent, exit_stack
 
     async def async_main():
         session_service = InMemorySessionService()
@@ -53,19 +58,19 @@ if __name__ == "__main__":
         artifacts_service = InMemoryArtifactService()
 
         session = session_service.create_session(
-            state={}, app_name='mcp_flight_app', user_id='user_01'
+            state={}, app_name='mcp_hotel_app', user_id='user_01'
         )
 
         # TODO: Change the query to be relevant to YOUR specified folder.
         # e.g., "list files in the 'documents' subfolder" or "read the file 'notes.txt'"
-        query = "帮我选个合适的，南京到北京，2025年4月24日的航班，最好是上午的。"
+        query = "帮我看一下4月25日北京的酒店，我更看重价格。给出你的推荐"
         print(f"User Query: '{query}'")
         content = types.Content(role='user', parts=[types.Part(text=query)])
 
         root_agent, exit_stack = await get_agent_async()
 
         runner = Runner(
-            app_name='mcp_flight_app',
+            app_name='mcp_hotel_app',
             agent=root_agent,
             artifact_service=artifacts_service, # Optional
             session_service=session_service,
@@ -86,3 +91,6 @@ if __name__ == "__main__":
 
 
     asyncio.run(async_main())
+
+
+    # 

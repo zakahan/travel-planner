@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from tools.retrieval.document import Document
+from retrieval.document import Document
 from typing import IO, Any
 
 

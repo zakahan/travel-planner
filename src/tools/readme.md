@@ -58,10 +58,10 @@ docker network create elastic
 docker pull docker.elastic.co/elasticsearch/elasticsearch:8.14.3
 
 # Start the Docker container. Note: Set the password as needed.
-docker run --name es01 --net elastic -p 9200:9200 -it -m 1GB -e "ELASTIC_PASSWORD=your_password" docker.elastic.co/elasticsearch/elasticsearch:8.14.3
+docker run --name es01 --net elastic -p 9200:9200 -it -m 1GB -e "ELASTIC_PASSWORD=X9y_Z3aB7fC1mD5n" docker.elastic.co/elasticsearch/elasticsearch:8.14.3
 
 # You can write the password into an environment variable.
-export ELASTIC_PASSWORD="your_password"
+export ELASTIC_PASSWORD="X9y_Z3aB7fC1mD5n"
 
 # Verify if the startup is successful.
 curl --cacert http_ca.crt -u elastic:$ELASTIC_PASSWORD https://localhost:9200

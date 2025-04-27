@@ -5,18 +5,22 @@ ark:
     api_key: your_api_key
     
 elastic:
-  ELASTICSEARCH_HOST: https://localhost
+  ELASTICSEARCH_HOST: your_host
   ELASTICSEARCH_PORT: 9200
   ELASTICSEARCH_USERNAME: elastic
   ELASTICSEARCH_PASSWORD: your_password
 
 vectorbase:
   VECTOR_TYPE: elasticsearch
-  ATTRACTION_FILE_PATH: your/path/of/attractions.tsv
-  ATTRACTION_COLLECTION_NAME: attraction01
+  ATTRACTION_FILE_PATH: xxx/attractions.tsv
+  ATTRACTION_COLLECTION_NAME: attraction02
+  # ------------------
+  HOTEL_FILE_PATH: xxx/hotel_1.tsv
+  HOTEL_COLLECTION_NAME: hotel02
 
 
 mcp:
   flight_mcp:
     api_key: your_api_key
-    
+  openweathermap:
+    api_key: your_api_key

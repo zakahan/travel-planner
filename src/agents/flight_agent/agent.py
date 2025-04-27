@@ -8,12 +8,12 @@ from google.genai import types
 
 from ..model import create_reasoning_model
 from tools.tools_impl import get_flight_tools_async
-from tp_logger import get_logger
+from configs import get_logger
 logger = get_logger(__name__)
 
-async def get_activities_agent_async():
+async def get_flight_agent_async():
     tools, exit_stack = await get_flight_tools_async()
-    activities_agent = Agent(
+    flight_agent = Agent(
         name="flight_agent",
         model=create_reasoning_model(),
         description="Suggests reasonable flight suggestion for the user from source location to destination.",
@@ -25,20 +25,20 @@ async def get_activities_agent_async():
         tools=tools
     )
 
-    return activities_agent, exit_stack
+    return flight_agent, exit_stack
 
 USER_ID = "user_flight"
 SESSION_ID = "session_flight"
 
 
 async def execute(request):
-    activities_agent, exit_stack = await get_activities_agent_async()
+    flight_agent, exit_stack = await get_flight_agent_async()
     session_service = InMemorySessionService()
     session_service.create_session(
         app_name="flight_app", user_id=USER_ID, session_id=SESSION_ID
     )
     runner = Runner(
-        agent=activities_agent, app_name="flight_app", session_service=session_service
+        agent=flight_agent, app_name="flight_app", session_service=session_service
     )
     prompt = "Please use the tool to help the user search for the most suitable flights and provide suggestions. " \
     "The user's departure location is {src}, the destination is {dest}, and the departure date is {start_date}.".format(

@@ -5,10 +5,10 @@ import os
 from pydantic import BaseModel
 from urllib.parse import urlparse
 import requests
-from tools.config import tools_cfg as cfg
-from tools.retrieval.document import Document
-from tools.retrieval.vkb.vector import KnowledgeBaseVector
-from tools.retrieval.vkb.vector_factory import AbstractVectorFactory
+from configs.config import tools_cfg as cfg
+from retrieval.document import Document
+from retrieval.vkb.vector import KnowledgeBaseVector
+from retrieval.vkb.vector_factory import AbstractVectorFactory
 
 
 class ElasticSearchConfig(BaseModel):

@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from .base_splitter import Splitter
-from tools.retrieval.document import Document
+from retrieval.document import Document
 from typing import Any
 
 

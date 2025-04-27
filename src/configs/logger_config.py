@@ -1,5 +1,8 @@
 import logging
 import os
+from pathlib import Path
+
+CONFIG_MODULE_DIR = Path(__file__).parent.resolve()
 
 def get_logger(name: str):
     logger = logging.getLogger(name)
@@ -11,10 +14,10 @@ def get_logger(name: str):
     console_handler.setLevel(logging.DEBUG)
     console_handler.setFormatter(formatter)
 
-    log_dir = 'logs'
+    log_dir = os.path.join(os.path.dirname(CONFIG_MODULE_DIR), 'logs')
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
-    file_handler = logging.FileHandler(os.path.join(log_dir, 'app.log'))
+    file_handler = logging.FileHandler(os.path.join(log_dir, 'travel_planner.log'))
     file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(formatter)
 

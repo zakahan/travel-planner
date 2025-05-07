@@ -6,7 +6,7 @@ from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset, SseServerParams, S
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 from google.genai import types
-from configs.config import tools_cfg
+from configs import tools_cfg
 from mcp_servers import MCP_SERVERS_DIR
 from configs import get_logger
 logger = get_logger(__name__)

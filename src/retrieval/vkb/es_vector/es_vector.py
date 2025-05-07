@@ -5,7 +5,7 @@ import os
 from pydantic import BaseModel
 from urllib.parse import urlparse
 import requests
-from configs.config import tools_cfg as cfg
+from configs import tools_cfg as cfg
 from retrieval.document import Document
 from retrieval.vkb.vector import KnowledgeBaseVector
 from retrieval.vkb.vector_factory import AbstractVectorFactory

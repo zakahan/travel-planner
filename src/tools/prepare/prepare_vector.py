@@ -1,5 +1,5 @@
 from retrieval.vkb.vector_factory import VectorGenerator
-from configs.config import tools_cfg
+from configs import tools_cfg
 from retrieval.splitter import StructuredSplitter
 from retrieval.embedding import ArkEmbeddings
 from retrieval.document import Document

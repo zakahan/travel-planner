@@ -9,7 +9,7 @@ if __name__ == "__main__":
 import re
 import random
 from mcp.server.fastmcp import FastMCP
-from configs.config import tools_cfg
+from configs import tools_cfg
 from retrieval.vkb.vector_factory import VectorGenerator
 from retrieval.embedding import ArkEmbeddings
 from configs import get_logger
@@ -64,25 +64,6 @@ def get_hotel_list(city: str, year: str, month: str, day: str) -> list[str]:
         logger.exception(e)
         return f"I'm very sorry, there was an issue with the service. Please think for yourself about the hotel in {city}."    
 
-
-@mcp.tool()
-def booking_hotel(hotel_name: str, year: int, month: int, day: int) -> str:
-    """
-    Book hotel, and return if success
-    Parameters:
-        hotel_name(str): The name of hotel
-        year (int): The year for which to query ticket information, e.g., 2025.
-        month (int): The month for which to query ticket information, ranging from 1 to 12.
-        day (int): The day for which to query ticket information, ranging from 1 to 31.
-
-    Returns:
-        str: A string containing the booking result.
-    """
-    return booking_hotel_sml(hotel_name)
-
-
-def booking_hotel_sml(hotel_name:str) ->str:
-    return "success"
 
 
 if __name__ == "__main__":

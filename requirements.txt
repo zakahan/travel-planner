@@ -1,5 +1,5 @@
 google-adk
-litellm
+litellm==1.67.2
 fastapi
 uvicorn
 httpx
@@ -9,3 +9,5 @@ streamlit
 pyyaml
 elasticsearch==8.14
 mcp-server
+json-repair
+loguru==0.7.3

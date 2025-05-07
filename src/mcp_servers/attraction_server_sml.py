@@ -10,7 +10,7 @@ if __name__ == "__main__":
 import re
 import random
 from mcp.server.fastmcp import FastMCP
-from configs.config import tools_cfg
+from configs import tools_cfg
 from retrieval.vkb.vector_factory import VectorGenerator
 from retrieval.embedding import ArkEmbeddings
 from configs import get_logger
@@ -58,19 +58,6 @@ def get_ticket_message_sml(city: str, attraction_name:str, year: int, month: int
             "state_message": "The current scenic spot is no longer within the supported range. Please choose another one.", 
             "attraction_code":"x0000"
         }
-
-
-def booking_ticket_sml(attraction_code: str) -> str:
-    if check_string_format(attraction_code):
-        if attraction_code[0] == "s":
-            return f"Booking {attraction_code} success."
-        elif attraction_code[0] == "f":
-            return f"This scenic area is free."
-        else:
-            # start with x
-            return "Booking error, no ticket."
-    else:
-        return "Booking error, attraction code error."
 
 
 def check_string_format(attraction_code: str) -> bool:

@@ -16,6 +16,7 @@ async def get_flight_agent_async():
         instruction=(
             "Given reasonable flight suggestions for the user from source location to destination."
             "Provide the flight name, departure and arrival time, price estimate, and duration in hours. "
+            "The number of flights should not be too many. 3 - 5 flights will be enough."
             "Respond in plain English. Keep it concise and well-formatted."
         ),
         output_key="flight_output",

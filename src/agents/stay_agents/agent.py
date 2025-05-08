@@ -13,7 +13,8 @@ async def get_stay_agent_async():
         name="stay_agent",
         model=create_reasoning_model(),
         description="Finds hotels within budget at a destination.",
-        instruction=("Given a destination, Finds hotels within budget."),
+        instruction=("Given a destination, Finds hotels within budget."
+                     "Respond in plain English. Keep it concise and well-formatted."),
         output_key="stay_output",
         tools=tools
     )

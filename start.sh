@@ -1,5 +1,6 @@
 cd src
 
+
 # repare vector
 python3 tools/prepare/prepare_vector.py
 

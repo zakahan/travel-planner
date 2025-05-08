@@ -27,9 +27,10 @@ async def plan(
         query: dict = Body(..., description="plan list"),
 ) -> BaseResponse:
     prompt = f"""
-计划从{query['origin']} 前往{query['destination']}，时间是从{query['start_date']}到{query['end_date']}，
-在这期间，预定酒店的预算是{query['budget']}，请调用flights，stays和activities agents来获得结果。注意，不要预定，只是做计划
-"""
+    Plan a trip from {query['origin']} to {query['destination']} from {query['start_date']} to {query['end_date']}. 
+    The budget for hotel reservations during this period is {query['budget']}. 
+    Please call the flights, stays, and activities agents to obtain the results. 
+    Note that this is just for planning, and no booking should be made. """
     results = await execute(prompt)
     results_dict = json_repair.loads(results[0])
     
@@ -46,17 +47,16 @@ async def replan(
     query: dict = Body(..., description="re-plan"),
 ) -> BaseResponse:
     prompt = f"""
-    你之前给用户制定过计划，但是用户并不满意，并且给你提出了一些意见，请你根据相关信息重新生成计划
-    ### 用户的需求：
-    计划从{query['origin']} 前往{query['destination']}，时间是从{query['start_date']}到{query['end_date']}，
-    在这期间，预定酒店的预算是{query['budget']}
-    ### 旧计划：
+    You have previously formulated a plan for the user. However, the user is not satisfied and has put forward some opinions to you. Please regenerate the plan according to the relevant information.
+    ### User's requirement:
+    Plan to travel from {query['origin']} to {query['destination']}, with the time period from {query['start_date']} to {query['end_date']}, and the budget for hotel reservation during this period is {query['budget']}.
+    ### Old plan:
     {query['plan']}
-    ### 修改意见
+    ### Modification opinions:
     {query['suggest']}
-    请你根据实际情况，调用flgits，stays和activities agents中的一个或多个来获得结果，
-    注意1：别忘了结果要用json的样式返回。
-    注意2:不需要调用也不需要返回没有使用的agent的信息
+    Please, according to the actual situation, call one or more of the flgits, stays and activities agents to obtain the result.
+    Note 1: Don't forget to return the result in JSON format.
+    Note 2: There is no need to call or return information of agents that are not used. 
     """
     result = await execute(prompt)
     results_dict = json_repair.loads(result[0])
@@ -71,12 +71,12 @@ async def replan(
 async def booking(
     query: dict = Body(..., description="booking everything."),
 ) -> BaseResponse:
-    prompt = f"""你之前给用户制定过计划，用户对计划做了一些选择，请你根据用户的选择，调用booking_agent来执行预定操作
-    ### 计划：
-    {query['plan']}
-    ### 用户的意见
-    {query['suggest']}  
-    请你根据实际情况，调用booking_agent进行处理，别忘了结果请用json样式返回
+    prompt = f"""You have previously formulated a plan for the user. The user has made some selections regarding the plan. Please call booking_agent to perform the booking operation according to the user's selections.
+### Plan:
+{query['plan']}
+### User's opinion:
+{query['suggest']}
+Please handle it by calling booking_agent according to the actual situation. Don't forget to return the result in JSON format. 
 """
     result = await execute(prompt)
     results_dict = json_repair.loads(result[0])
